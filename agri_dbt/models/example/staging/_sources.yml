@@ -1,0 +1,21 @@
+version: 2
+
+sources:
+  - name: raw
+    description: "Raw data landed by the ingestion pipeline."
+    schema: raw
+    tables:
+      - name: mandi_prices
+        description: >
+          Daily mandi price records pulled from the data.gov.in Agmarknet API.
+          One row per (state, district, market, commodity, variety, grade, arrival_date).
+          Prices are in rupees per quintal.
+        columns:
+          - name: state
+            description: "Indian state where the mandi is located."
+          - name: commodity
+            description: "Commodity traded (e.g., Banana, Paddy, Onion)."
+          - name: arrival_date
+            description: "Date of price record. Stored as a DD/MM/YYYY string — needs parsing."
+          - name: modal_price
+            description: "Most common transaction price for the day. In rupees per quintal."
